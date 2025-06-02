@@ -1,0 +1,463 @@
+.nutrition-page-container {
+  padding: 2rem;
+  /* max-width: 900px; removed */
+  margin: 0; /* Remove auto margins */
+  width: 100%; /* Ensure it takes full available width */
+}
+
+.nutrition-page-container h2 { /* Main page title */
+  margin-bottom: 1.5rem; /* Add space below the main page title */
+}
+
+.nutrition-overview {
+  width: 100%;
+}
+
+/* Style for the H1 title next to the 'Log New Nutrition' button */
+.nutrition-overview div > h1.page-title {
+  margin-right: 4.5rem; /* Increased space to the right of 'Your Nutrition' title */
+}
+
+.nutrition-logs-list {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.nutrition-log-card {
+  background-color: var(--color-surface, white);
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: var(--border-radius-large, 10px);
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.nutrition-log-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.nutrition-log-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-light, #eee);
+  position: relative;
+}
+
+.nutrition-log-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-light, #eee);
+}
+
+.view-details-btn {
+  font-weight: 500;
+  color: var(--color-primary, #4a90e2);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+
+.view-details-btn:hover {
+  color: var(--color-primary-dark, #357abd);
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nutrition-log-card {
+    padding: 1.25rem;
+  }
+  
+  .nutrition-log-card-header h3 {
+    font-size: 1.1rem;
+  }
+}
+
+.nutrition-log-card-header h3 {
+  color: var(--color-primary, #0056b3);
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.nutrition-log-card-date {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #555);
+}
+
+.nutrition-log-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.summary-item {
+  background-color: var(--color-surface-alt, #f8f9fa);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius-medium, 7px);
+  font-size: 0.9rem;
+}
+
+.summary-item strong {
+  color: var(--color-secondary, #333);
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.nutrition-log-card .notes {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #666);
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.nutrition-log-card-actions {
+  margin-top: auto; /* Pushes actions to the bottom if card height varies */
+  text-align: right;
+}
+
+.nutrition-log-card .btn-secondary {
+  /* Assuming you have a .btn-secondary or similar defined globally */
+  /* If not, style a 'View Details' button here */
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  /* Example specific styles if not global: */
+  /* background-color: transparent; */
+  /* border: 1px solid var(--color-primary); */
+  /* color: var(--color-primary); */
+  /* border-radius: var(--border-radius-small); */
+}
+
+/* .log-new-nutrition-btn-container margin-left removed as spacing is now handled by h1.page-title margin-right */
+
+/* Styles for the nutrition form and its components follow */
+/* .nutrition-overview margin-top removed as spacing is now handled by h2 margin-bottom */
+
+.nutrition-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--background-color-light);
+  padding: 2rem;
+  border-radius: var(--border-radius-large);
+  border: 1px solid var(--border-color);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+  padding: 0.8rem 1rem; /* Increased padding */
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: var(--border-radius-medium, 7px);
+  font-size: 1rem;
+  background-color: var(--color-surface-input, white);
+  color: var(--color-text-input, #333);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  width: 100%; /* Ensure inputs take full width of their container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.form-group input[type="date"]:focus,
+.form-group input[type="time"]:focus,
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary, #007bff);
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-primary-rgb, 0,123,255),.25); /* Use RGB version of primary color if available */
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px; /* Slightly taller textarea */
+}
+
+/* Appending new/refined styles for meal and food item sections below */
+
+.meal-entry {
+  background-color: var(--color-surface-alt, #f8f9fa); /* Slightly different bg for meal block */
+  border: 1px solid var(--color-border-light, #e9ecef);
+  border-radius: var(--border-radius-large, 10px);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem; /* Spacing between meals */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative; /* For absolute positioning of remove button */
+}
+
+.meal-header {
+  display: flex;
+  gap: 1rem; /* Gap between meal name and time inputs */
+  margin-bottom: 1rem;
+}
+
+.meal-header .form-group {
+  flex: 1; /* Allow form groups to grow */
+}
+
+.food-items-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--color-border-light, #eee); /* Separator for food items area */
+}
+
+.food-items-section h5 {
+  margin-bottom: 1rem;
+  color: var(--color-secondary); /* Match section titles */
+}
+
+.food-item-entry {
+  background-color: var(--color-surface, white);
+  border: 1px solid var(--color-border, #dee2e6);
+  border-radius: var(--border-radius-medium, 7px);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  position: relative;
+}
+
+.form-group-inline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive columns */
+  gap: 1rem;
+  align-items: flex-end; /* Align form groups at the bottom */
+}
+
+.form-group-inline .form-group {
+  margin-bottom: 0; /* Remove default bottom margin */
+}
+
+/* Button specific styling refinements */
+.meal-entry .remove-meal-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 0.6rem; /* Make remove buttons smaller */
+}
+
+.food-item-entry .remove-food-item-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.3rem 0.6rem;
+}
+
+.add-meal-btn,
+.food-items-section .add-food-item-btn {
+  display: block; /* Make add buttons block level or use text-align on parent */
+  margin: 1rem auto 0.5rem auto; /* Center with auto margins */
+  width: fit-content;
+  padding: 0.6rem 1.2rem;
+}
+
+.btn-submit-log {
+  margin-top: 2rem;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  width: 100%; /* Make submit button full width or keep as is */
+}
+
+.form-error {
+  background-color: var(--color-danger-light, #f8d7da);
+  color: var(--color-danger-dark, #721c24);
+  border: 1px solid var(--color-danger, #f5c6cb);
+  padding: 1rem;
+  border-radius: var(--border-radius-medium);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.meals-section h4, .food-items-section h5 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color-dark);
+  padding-bottom: 0.5rem;
+}
+
+.meal-entry {
+  border: 1px solid var(--border-color-dark);
+  border-radius: var(--border-radius-medium);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--background-color); /* Slightly different bg for nesting */
+}
+
+.meal-entry .form-group {
+  margin-bottom: 0.75rem; /* Spacing within a meal entry */
+}
+
+.add-meal-btn,
+.btn-submit-log {
+  align-self: flex-start; /* Or center, depending on desired layout */
+  margin-top: 1rem;
+}
+
+.remove-meal-btn {
+  align-self: flex-end;
+  margin-top: 0.5rem;
+}
+
+.form-error {
+  color: var(--danger-color);
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 0.75rem;
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--danger-color);
+  margin-bottom: 1rem;
+}
+
+/* Small button utility */
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85em;
+}
+
+/* Food Items Section Styles */
+.food-items-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-color-dark);
+  margin-left: 20px; /* Indent food items under their meal */
+  padding-left: 15px;
+}
+
+.food-items-section h5 {
+  margin-bottom: 0.75rem;
+  color: var(--secondary-color); /* Slightly different color for sub-heading */
+}
+
+.food-item-entry {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-small);
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background-color: var(--background-color-light); /* Even lighter bg for food items */
+}
+
+.food-item-entry .form-group {
+  margin-bottom: 0.5rem;
+}
+
+/* Inline form groups for better layout of food item numerics */
+.form-group-inline {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 1rem; /* Spacing between inline items */
+  align-items: flex-end; /* Align items with labels if labels are on top */
+}
+
+.form-group-inline .form-group {
+  flex: 1; /* Each group takes equal space */
+  min-width: 120px; /* Minimum width before wrapping */
+  margin-bottom: 0.5rem; /* Consistent margin */
+}
+
+.add-food-item-btn {
+  margin-top: 0.5rem;
+  background-color: var(--secondary-color-dark) !important; /* Distinct color */
+  border-color: var(--secondary-color-dark) !important;
+}
+
+.add-food-item-btn:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+.remove-food-item-btn {
+  margin-top: 0.5rem;
+  align-self: flex-end;
+}
+
+/* Estilos para a seção de refeições */
+.meals-section {
+  margin-top: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-light, #f0f0f0);
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--color-text, #2c3e50);
+  font-weight: 600;
+}
+
+.meals-count {
+  background: var(--color-primary-light, #e6f0ff);
+  color: var(--color-primary, #4a90e2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+}
+
+.meals-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Responsivo */
+@media (min-width: 640px) {
+  .meals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .meals-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 400px) {
+  .meals-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .meals-count {
+    align-self: flex-start;
+  }
+}

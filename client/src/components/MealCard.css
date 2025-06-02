@@ -1,0 +1,92 @@
+.meal-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.meal-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid #4a90e2;
+}
+
+.meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.meal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.meal-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.meal-time {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  background: #f8f9fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.meal-card-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.summary-label {
+  font-size: 0.75rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .meal-card-summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .meal-card {
+    padding: 1rem;
+  }
+  
+  .meal-card-title {
+    font-size: 1rem;
+  }
+  
+  .summary-value {
+    font-size: 1.1rem;
+  }
+}

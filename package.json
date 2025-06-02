@@ -1,0 +1,25 @@
+{
+  "name": "fitflow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "FitFlow: A MERN stack application for tracking gym workouts, meals, and weight.",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "postinstall": "npm install --prefix server && npm install --prefix client"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.19",
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "mern",
+    "typescript",
+    "gym",
+    "fitness",
+    "tracker"
+  ],
+  "author": "Windsurf AI & User",
+  "license": "ISC"
+}

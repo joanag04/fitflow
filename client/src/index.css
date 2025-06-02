@@ -1,0 +1,144 @@
+/* index.css */
+:root {
+  --primary-color: #4a90e2; /* A nice blue */
+  --secondary-color: #50e3c2; /* A complementary teal/mint */
+  --text-color: #333;
+  --light-text-color: #fff;
+  --background-color: #f7f9fc; /* A very light grey-blue */
+  --surface-color: #fff; /* For cards, navbars etc. */
+  --border-color: #e0e0e0;
+  --error-color: #e74c3c;
+
+  /* Variables used by component-specific styles (LoginPage, SignupPage, etc.) */
+  --color-primary: #007bff; /* Explicitly define for login button */
+  --color-primary-dark: color-mix(in srgb, var(--color-primary) 85%, black);
+  --color-primary-rgb: 0,123,255; /* For focus shadow on login page inputs */
+
+  --color-success: #28a745; /* For signup button */
+  --color-success-dark: color-mix(in srgb, var(--color-success) 85%, black);
+  
+  --color-danger: var(--error-color); /* Alias for consistency */
+  --color-danger-light: #f8d7da; /* Used in form error messages */
+  --color-danger-dark: #721c24;  /* Used in form error messages */
+
+  /* General component styling variables used with fallbacks previously */
+  --background-color-light: #f4f7f6;
+  /* --color-surface is aliased from --surface-color if LoginPage/SignupPage use it */
+  /* --color-border is aliased from --border-color if LoginPage/SignupPage use it */
+  --color-text-secondary: #555;
+  --border-radius-large: 10px;
+  --border-radius-medium: 7px;
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  --font-family-sans: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-monospace: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  --border-radius: 4px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* --shadow-medium is defined above with component-specific variables */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Base font size */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex; /* Helps with centering content if App itself is a flex item */
+  flex-direction: column; /* Allows footer to stick to bottom if body is main container */
+}
+
+#root {
+  flex-grow: 1; /* Ensures the React app takes up available space */
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--primary-color) 70%, black);
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.75rem;
+  font-weight: 600; /* Slightly bolder headings */
+  line-height: 1.3;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Basic button styling - can be overridden by component-specific styles */
+button {
+  font-family: var(--font-family-sans);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
+}
+
+button:hover {
+  background-color: color-mix(in srgb, var(--primary-color) 85%, black);
+}
+
+button:focus, 
+button:focus-visible {
+  outline: 3px auto var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Remove default list styling */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Forms basic styling */
+input, 
+textarea,
+select {
+  font-family: var(--font-family-sans);
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent);
+}

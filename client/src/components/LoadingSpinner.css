@@ -1,0 +1,35 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Sizes */
+.w-4 { width: 1rem; }
+.h-4 { height: 1rem; }
+.w-6 { width: 1.5rem; }
+.h-6 { height: 1.5rem; }
+.w-8 { width: 2rem; }
+.h-8 { height: 2rem; }
+
+/* Border utilities */
+.rounded-full { border-radius: 9999px; }
+.border-2 { border-width: 2px; }
+.border-solid { border-style: solid; }
+.border-r-transparent { border-right-color: transparent; }

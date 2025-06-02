@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windsurf Gym App - Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Windsurf Gym App Documentation</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#overview">Project Overview</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#development">Development</a></li>
+            <li><a href="#api">API Endpoints</a></li>
+            <li><a href="#database">Database Schema</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="overview">
+            <h2>Project Overview</h2>
+            <p>Welcome to the documentation for the Windsurf Gym App. This application helps users track their fitness journey, including workouts, meals, and weight progress. It is built using the MERN stack with TypeScript.</p>
+        </section>
+
+        <section id="architecture">
+            <h2>Architecture</h2>
+            <p>The application follows the MERN stack (MongoDB, Express.js, React.js, Node.js) with TypeScript used throughout the stack.</p>
+            <h3>High-Level Diagram</h3>
+            <div class="mermaid">
+            graph TD;
+                UserInterface[React Client] -- HTTPS/API Calls --> ExpressServer[Express.js Server];
+                ExpressServer -- Mongoose ODM --> MongoDB[MongoDB Database];
+                ExpressServer --> AuthMiddleware[Authentication Middleware];
+                ExpressServer --> UserRoutes[User Routes];
+                ExpressServer --> WorkoutRoutes[Workout Routes];
+                ExpressServer --> NutritionRoutes[Nutrition Routes];
+            </div>
+        </section>
+
+        <section id="features">
+            <h2>Features</h2>
+            <p>The planned features include:</p>
+            <ul>
+                <li>User Authentication (Registration, Login, Logout)</li>
+                <li>Workout Logging (Exercises, Sets, Reps, Duration)</li>
+                <li>Nutrition Tracking (Meals, Food Items, Macronutrients, Water Intake)</li>
+                <li>Weight Progress Monitoring</li>
+                <li>Gamification (Points, Levels, Streaks)</li>
+            </ul>
+        </section>
+
+        <section id="installation">
+            <h2>Installation</h2>
+            <p>Detailed installation instructions can be found in the main <a href="../README.md" target="_blank">README.md</a> file of the project.</p>
+        </section>
+
+        <section id="development">
+            <h2>Development</h2>
+            <p>Information regarding development practices, coding standards, branching strategy, and contribution guidelines will be detailed here.</p>
+            <h3>Running Locally</h3>
+            <p>To run the application locally, refer to the scripts in the root `package.json` and the respective `server` and `client` `package.json` files.</p>
+        </section>
+
+        <section id="api">
+            <h2>API Endpoints</h2>
+            <p>This section will document all available API endpoints, including request/response formats and authentication requirements.</p>
+            <h4>User API (`/api/users`)</h4>
+            <ul>
+                <li>`POST /api/users/register` - Register a new user.</li>
+                <li>`POST /api/users/login` - Login an existing user.</li>
+                <li>`GET /api/users/me` - Get current user's profile (requires auth).</li>
+            </ul>
+             <h4>Workout API (`/api/workouts`)</h4>
+            <ul>
+                <li>`POST /api/workouts` - Create a new workout (requires auth).</li>
+                <li>`GET /api/workouts` - Get all workouts for the logged-in user (requires auth).</li>
+            </ul>
+            <h4>Nutrition API (`/api/nutrition`)</h4>
+            <ul>
+                <li>`POST /api/nutrition` - Log a new nutrition entry (requires auth).</li>
+                <li>`GET /api/nutrition` - Get all nutrition entries for the logged-in user (requires auth).</li>
+            </ul>
+        </section>
+
+        <section id="database">
+            <h2>Database Schema</h2>
+            <p>The application uses MongoDB. The schemas are defined using Mongoose.</p>
+            <h3>User Collection (Utilizador)</h3>
+            <pre><code class="language-javascript">{
+  name: String,         // Nome do utilizador
+  email: String,        // Identificador único do utilizador (PK)
+  passwordHash: String, // Hashed password
+  height?: Number,      // Altura do utilizador (cm, opcional)
+  weight?: Number,      // Peso atual (kg, opcional)
+  goalWeight?: Number,  // Peso a alcançar (kg, opcional)
+  createdAt: Date,      // Timestamp da criação da conta
+  currentStreak: Number, // Streak atual de treinos
+  longestStreak: Number, // Streak mais longa de treinos
+  lastWorkoutDate?: Date, // Data do último treino
+  streakStartDate?: Date, // Data da streak inicial
+  points: Number,       // Pontos da gamificação
+  level: Number,        // Nivel do utilizador
+  nextLevelPoints: Number // Pontos para o próximo nível
+}</code></pre>
+            <h3>Workout Collection (Treino)</h3>
+            <pre><code class="language-javascript">{
+  userId: ObjectId,     // Referência ao utilizador (FK to User._id)
+  title: String,        // Titulo do treino
+  date: Date,           // Data do treino
+  exercises: [
+    {
+      name: String,     // Nome do exercicio
+      sets: [
+        {
+          weight: Number, // Carga utilizada (kg)
+          reps: Number,   // Numero de repeticoes
+          completed: Boolean // Status do set
+        }
+      ],
+      notes?: String   // Notas do exercicio (opcional)
+    }
+  ],
+  duration: Number,     // Duracao do treino em minutos
+  notes?: String,        // Notas do treino (opcional)
+  completed: Boolean    // Status do treino
+}</code></pre>
+            <h3>Nutrition Collection (Nutrição)</h3>
+            <pre><code class="language-javascript">{
+  userId: ObjectId,     // Referencia ao utilizador (FK to User._id)
+  date: Date,           // Data do registo
+  meals: [
+    {
+      name: String,       // Nome da refeição (e.g., Breakfast, Lunch)
+      time: Date,         // Horario da refeicao
+      foodItems: [
+        {
+          name: String,        // Nome do alimento
+          calories: Number,    // Calorias
+          protein: Number,     // Proteina (g)
+          carbs: Number,       // Hidratos de carbono (g)
+          fat: Number,         // Gordura (g)
+          servingSize?: String, // Quantidade servida (e.g., "100g", "1 cup", opcional)
+          quantity: Number     // Quantidade consumida (e.g., 1.5 if servingSize is "100g" and consumed 150g)
+        }
+      ]
+    }
+  ],
+  totalCalories: Number,  // Total de calorias diarias (calculated or user-input)
+  totalProtein: Number,   // Total de proteina diaria (g)
+  totalCarbs: Number,     // Total de hidratos de carbono diaria (g)
+  totalFat: Number,       // Total de gorduras diaria (g)
+  waterIntake: Number,    // Agua consumida diaria (ml)
+  notes?: String          // Notas de nutricao (opcional)
+}</code></pre>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Windsurf AI & User. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

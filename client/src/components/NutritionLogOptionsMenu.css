@@ -1,0 +1,178 @@
+.nutrition-log-options {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+}
+
+.options-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #666;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.options-button:hover,
+.options-button:focus-visible {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #333;
+  outline: none;
+}
+
+.options-button[aria-expanded="true"] {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #333;
+}
+
+.options-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.options-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.options-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 160px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top right;
+  will-change: transform, opacity;
+}
+
+.options-menu[aria-hidden="false"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  animation: menuAppear 0.2s ease-out;
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.options-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.15s ease-out forwards;
+  border-left: 3px solid transparent;
+}
+
+.options-item:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-left-color: var(--color-primary, #4a90e2);
+}
+
+.options-item:not(.delete):hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: var(--color-primary, #4a90e2);
+}
+
+.options-item.delete:hover {
+  background-color: rgba(220, 53, 69, 0.05);
+  color: #dc3545;
+}
+
+.options-item:nth-child(1) { animation-delay: 0.03s; }
+.options-item:nth-child(2) { animation-delay: 0.06s; }
+.options-item:nth-child(3) { animation-delay: 0.09s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-4px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.menu-item-icon {
+  font-size: 1rem;
+  color: inherit;
+  flex-shrink: 0;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.options-item > span {
+  flex: 1;
+}
+
+/* Ripple effect */
+.options-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Focus ring for better accessibility */
+.options-item:focus-visible {
+  outline: 2px solid var(--color-primary, #4a90e2);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.options-item:hover {
+  background-color: #f5f5f5;
+}
+
+.options-item.delete {
+  color: #dc3545;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.options-item.delete:hover {
+  background-color: #f8d7da;
+  color: #b02a37;
+}

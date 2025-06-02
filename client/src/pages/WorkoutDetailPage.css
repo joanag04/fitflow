@@ -1,0 +1,139 @@
+/* WorkoutDetailPage.css */
+.workout-detail-page-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.workout-detail-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.workout-detail-header h1 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.workout-date {
+  font-size: 0.95rem;
+  color: var(--text-secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.status-completed {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  background-color: var(--success-color-light);
+  color: var(--success-color-dark);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.workout-summary p,
+.exercise-notes {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.workout-summary strong,
+.exercise-notes strong {
+  color: var(--text-strong-color);
+}
+
+.workout-exercises-detail h2 {
+  color: var(--secondary-color);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color-light);
+  padding-bottom: 0.5rem;
+}
+
+.workout-exercises-detail h3 {
+  color: var(--primary-color-dark);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.exercise-item-detail {
+  background-color: var(--background-alt-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-color-light);
+}
+
+.sets-list-detail {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.set-item-detail {
+  padding: 0.5rem;
+  border-bottom: 1px dashed var(--border-color-lighter);
+  font-size: 0.95rem;
+}
+
+.set-item-detail:last-child {
+  border-bottom: none;
+}
+
+.set-completed {
+  color: var(--text-secondary-color); /* Or a specific 'completed' color */
+  /* text-decoration: line-through; */ /* Optional: if you want to strike through completed sets */
+}
+
+.workout-detail-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.button-delete {
+  background-color: var(--danger-color, #dc3545);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: var(--border-radius, 5px);
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.button-delete:hover {
+  background-color: var(--danger-hover-color, #c82333);
+}
+
+.button-edit {
+  background-color: var(--secondary-color, #6c757d);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: var(--border-radius, 5px);
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.button-edit:hover {
+  background-color: var(--secondary-hover-color, #5a6268);
+}
+
+.page-loading,
+.error-message,
+.not-found {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 2rem;
+  color: var(--text-secondary-color);
+}
+
+.error-message {
+  color: var(--error-color);
+}

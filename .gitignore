@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# TypeScript specific
+*.tsbuildinfo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Test reports
+coverage/
+junit.xml
+
+# Client specific (if create-react-app or similar)
+client/node_modules
+client/build
+client/.env
+
+# Server specific
+server/node_modules
+server/dist
+server/.env

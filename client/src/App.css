@@ -1,0 +1,16 @@
+/* App.css */
+.container {
+  width: 100%; /* Allow container to span full width */
+  margin: 2rem 0; /* Top/bottom margin, no side auto-margin */
+  padding: 0 2rem; /* Padding on the sides, no top/bottom padding here (pages can add it) */
+  /* background-color, border-radius, and box-shadow removed to be handled by page-specific containers if needed */
+}
+
+/* You might want to style your page titles or common elements here */
+.page-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+}

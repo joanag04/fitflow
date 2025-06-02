@@ -1,0 +1,114 @@
+.create-workout-page {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--background-light, #f9f9f9);
+  border-radius: var(--border-radius, 8px);
+  box-shadow: var(--shadow-light, 0 2px 4px rgba(0,0,0,0.1));
+}
+
+.create-workout-page h2 {
+  text-align: center;
+  color: var(--primary-color, #007bff);
+  margin-bottom: 20px;
+}
+
+.create-workout-page form div {
+  margin-bottom: 15px;
+}
+
+.create-workout-page label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--text-dark, #333);
+}
+
+.create-workout-page input[type="text"],
+.create-workout-page input[type="date"],
+.create-workout-page input[type="number"],
+.create-workout-page textarea,
+.create-workout-page select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color-light, #ccc);
+  border-radius: var(--border-radius-small, 4px);
+  box-sizing: border-box;
+}
+
+.create-workout-page textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.create-workout-page input[type="checkbox"] {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.exercise-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--border-color-light, #eee);
+  border-radius: var(--border-radius-small, 4px);
+}
+
+.exercise-input input {
+  flex-grow: 1;
+}
+
+.exercise-input button,
+.create-workout-page form button[type="button"] {
+  background-color: var(--secondary-color, #6c757d);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--border-radius-small, 4px);
+  cursor: pointer;
+}
+
+.exercise-input button:hover,
+.create-workout-page form button[type="button"]:hover {
+  background-color: var(--secondary-hover-color, #5a6268);
+}
+
+.exercise-input button {
+    background-color: var(--danger-color, #dc3545);
+}
+.exercise-input button:hover {
+    background-color: var(--danger-hover-color, #c82333);
+}
+
+
+.create-workout-page button[type="submit"] {
+  background-color: var(--primary-color, #007bff);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--border-radius-small, 4px);
+  cursor: pointer;
+  font-size: 1.1em;
+  width: 100%;
+}
+
+.create-workout-page button[type="submit"]:hover {
+  background-color: var(--primary-hover-color, #0056b3);
+}
+
+.create-workout-page button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: var(--danger-color, #dc3545);
+  background-color: var(--danger-background-light, #f8d7da);
+  border: 1px solid var(--danger-border-color, #f5c6cb);
+  padding: 10px;
+  border-radius: var(--border-radius-small, 4px);
+  margin-bottom: 15px;
+  text-align: center;
+}
