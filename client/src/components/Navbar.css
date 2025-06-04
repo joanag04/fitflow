@@ -26,8 +26,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1000;
+  padding: 0.75rem;
+  z-index: 1001; /* Garante que fique acima do menu */
+  position: relative;
 }
 
 .menu-button:focus {
@@ -68,11 +69,20 @@
 }
 
 .menu-open .menu-icon::before {
-  transform: rotate(45deg);
+  transform: translateY(0) rotate(45deg);
+  top: 0;
 }
 
 .menu-open .menu-icon::after {
-  transform: rotate(-45deg);
+  transform: translateY(0) rotate(-45deg);
+  top: 0;
+}
+
+/* Garante que o ícone de menu fique visível quando o menu estiver aberto */
+.menu-open .menu-button {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
 }
 
 .nav-logo {
@@ -115,26 +125,30 @@
 /* Mobile styles */
 @media (max-width: 767px) {
   .menu-button {
-    display: block; /* Show menu button on mobile */
+    display: flex; /* Usa flex para melhor alinhamento */
+    align-items: center;
+    justify-content: center;
+    width: 48px; /* Tamanho maior para melhor toque */
+    height: 48px;
   }
 
   .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 70%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 250px;
     height: 100vh;
     background-color: var(--surface-color);
     flex-direction: column;
     padding: 5rem 2rem 2rem;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    overflow-y: auto;
+    z-index: 1000;
   }
 
   .menu-open .nav-links {
     right: 0;
+    transition: right 0.3s ease-in-out; /* Adiciona transição suave */
   }
 
   .nav-links li {
@@ -144,7 +158,7 @@
 
   .nav-link {
     display: block;
-    padding: 0.75rem 0;
+    padding: 0rem 0;
     width: 100%;
   }
 
