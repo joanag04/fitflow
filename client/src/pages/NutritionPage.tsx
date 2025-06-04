@@ -346,10 +346,17 @@ const NutritionPage: React.FC = () => {
       {!showForm ? (
         // VIEWING LOGS MODE
         <div className="nutrition-overview">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <div className="page-header">
             <h1 className="page-title">Nutrition Log for {new Date(currentLogDate + 'T00:00:00Z').toLocaleDateString()}</h1>
-            <button onClick={() => { setShowForm(true); setFormError(null); /* Clear old errors when switching to form */ }} className="btn-primary" disabled={isFetchingLogs || isLoading}>
-              Log New Nutrition for this Date
+            <button 
+              onClick={() => { 
+                setShowForm(true); 
+                setFormError(null); /* Clear old errors when switching to form */ 
+              }} 
+              className="btn-primary" 
+              disabled={isFetchingLogs || isLoading}
+            >
+              Log New Nutrition
             </button>
           </div>
 
@@ -397,7 +404,7 @@ const NutritionPage: React.FC = () => {
       ) : (
         // LOGGING FORM MODE
         <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <div className="page-header">
             <h1 className="page-title">Log Nutrition for {new Date(currentLogDate + 'T00:00:00Z').toLocaleDateString()}</h1>
             <button onClick={() => { setShowForm(false); setFormError(null); /* Clear form errors */ }} className="btn-secondary" disabled={isLoading}>
               Cancel

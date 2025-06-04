@@ -1,0 +1,96 @@
+/* LoadingSpinner.css */
+
+.loading-spinner {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--spinner-size, 2rem);
+  height: var(--spinner-size, 2rem);
+}
+
+.spinner-border {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border: 0.2em solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--spinner-color, var(--primary-color));
+  animation: spin 1s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Sizes */
+.loading-spinner.small {
+  --spinner-size: 1rem;
+}
+
+.loading-spinner.medium {
+  --spinner-size: 2rem;
+}
+
+.loading-spinner.large {
+  --spinner-size: 3rem;
+}
+
+/* Colors */
+.loading-spinner.primary {
+  --spinner-color: var(--primary-color);
+}
+
+.loading-spinner.secondary {
+  --spinner-color: var(--secondary-color);
+}
+
+.loading-spinner.light {
+  --spinner-color: var(--text-light);
+}
+
+.loading-spinner.dark {
+  --spinner-color: var(--text-dark);
+}
+
+/* Centered in container */
+.loading-spinner.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Full page overlay */
+.loading-spinner.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .loading-spinner.overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .spinner-border {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .spinner-border {
+    animation: spin 2s linear infinite;
+  }
+}

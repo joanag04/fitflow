@@ -292,7 +292,7 @@ const WorkoutsPage: React.FC = () => {
       {!showWorkoutForm ? (
         // View for displaying existing workouts and "Log New Workout" button
         <div className="workouts-overview">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <div className="workouts-header">
             <h1 className="page-title">Your Workouts</h1>
             <button onClick={() => setShowWorkoutForm(true)} className="btn-primary" disabled={isSubmitting}>
               Log New Workout

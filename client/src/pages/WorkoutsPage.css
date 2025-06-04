@@ -1,34 +1,141 @@
 /* WorkoutsPage.css */
-/* General Page Styles */
+:root {
+  --primary: #007bff;
+  --primary-hover: #0056b3;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  --white: #ffffff;
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --card-bg: #ffffff;
+  --card-border: #e1e4e8;
+}
+
+/* Base Layout */
 .workouts-page-container {
-  padding: 2rem;
-  /* max-width: 900px; removed */
-  margin: 0; /* Remove auto margins */
-  width: 100%; /* Ensure it takes full available width */
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  min-height: calc(100vh - 100px);
 }
 
-.workouts-overview {
-  /* This class is the main container when not showing the form */
-  width: 100%; /* Added to prevent empty ruleset lint error */
+/* Page Header */
+.workouts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 0.5rem;
 }
 
+.workouts-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0;
+  margin-right: 2rem; /* Add right margin to create space between title and button */
+}
+
+/* Add styles for the page header container */
+.workouts-overview > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+/* Ensure the button has proper spacing */
+.workouts-overview .btn-primary {
+  margin-left: auto; /* Push button to the right */
+  white-space: nowrap; /* Prevent button text from wrapping */
+  min-width: 150px; /* Set a smaller fixed width */
+  padding: 0.5rem 1rem; /* Adjust padding for better proportions */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .workouts-overview > div:first-child {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .workouts-overview .btn-primary {
+    margin-left: 0;
+    width: auto; /* Allow button to shrink to content */
+    min-width: 120px; /* Slightly smaller on mobile */
+  }
+}
+
+/* Workouts List */
 .workouts-list {
-  margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Empty State */
+.workouts-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--light);
+  border-radius: var(--border-radius);
+  color: var(--gray);
+}
+
+.workouts-empty h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+/* Workout Form */
+.workout-form-container {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border: 1px solid var(--card-border);
+}
+
+.workout-form-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.workout-form-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--dark);
 }
 
 .workout-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
   padding: 1.5rem;
-  background-color: var(--surface-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  display: grid;
+  gap: 1.5rem;
 }
 
+/* Form Groups */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -37,136 +144,213 @@
 
 .form-group label {
   font-weight: 500;
-  color: var(--text-color);
+  color: var(--dark);
+  font-size: 0.95rem;
 }
 
-.form-group input[type="text"],
-.form-group input[type="date"],
-.form-group input[type="number"],
-.form-group textarea {
-  padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-sm);
   font-size: 1rem;
+  transition: var(--transition);
 }
 
-.form-group input[type="text"]:focus,
-.form-group input[type="date"]:focus,
-.form-group input[type="number"]:focus,
-.form-group textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent);
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
   outline: none;
 }
 
-.form-group textarea {
-  min-height: 80px;
+textarea.form-control {
+  min-height: 100px;
   resize: vertical;
 }
 
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.checkbox-group input[type="checkbox"] {
-  width: 1.25rem;
-  height: 1.25rem;
-  accent-color: var(--primary-color);
-}
-
+/* Exercises Section */
 .exercises-section {
   margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
 }
 
 .exercise-item {
-  padding: 1rem;
+  background: var(--light);
+  border-radius: var(--border-radius-sm);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--card-border);
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  background-color: var(--background-color); /* Slightly different background for nesting */
+}
+
+.exercise-header h4 {
+  margin: 0;
+  color: var(--dark);
+  font-size: 1.1rem;
 }
 
 .sets-section {
-  margin-top: 0.75rem;
-  padding-left: 1rem;
+  margin-top: 1rem;
 }
 
 .set-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
   gap: 0.75rem;
   align-items: center;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  border: 1px dashed var(--border-color);
-  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  background: var(--white);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--card-border);
 }
 
-.set-item .form-group {
-  flex-grow: 1;
-  gap: 0.25rem; /* Smaller gap for set inputs */
-}
-
-.set-item .form-group label {
-  font-size: 0.9rem; /* Smaller label for set inputs */
-}
-
-.set-item input[type="number"] {
-  padding: 0.5rem;
-}
-
-.actions-group {
-  margin-top: 1rem;
+.set-item-actions {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
+  align-items: center;
 }
 
-.btn-secondary {
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.btn-secondary:hover {
-  background-color: color-mix(in srgb, var(--secondary-color) 85%, black);
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 123, 255, 0.1);
 }
 
 .btn-danger {
-  background-color: var(--error-color);
+  background-color: var(--danger);
+  color: white;
 }
 
 .btn-danger:hover {
-  background-color: color-mix(in srgb, var(--error-color) 85%, black);
+  background-color: #c82333;
+  transform: translateY(-1px);
 }
 
-.btn-small {
-  padding: 0.4em 0.8em;
-  font-size: 0.9em;
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
 }
 
-/* Specific styling for completed checkbox within a set item for better alignment */
-.set-completed-group {
+.btn-icon {
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Form Actions */
+.form-actions {
   display: flex;
-  flex-direction: column; /* Stack checkbox and label vertically if needed */
-  align-items: center; /* Center items if stacked */
-  justify-content: center; /* Center content in the group */
-  gap: 0.25rem; /* Reduce gap for smaller elements */
-  margin-top: 1.25rem; /* Align with other input fields in the set */
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--light-gray);
 }
 
-.set-completed-group label {
-  font-size: 0.9rem;
-}
-
+/* Error Message */
 .form-error-message {
-  color: var(--error-color);
-  background-color: color-mix(in srgb, var(--error-color) 15%, transparent);
-  border: 1px solid var(--error-color);
-  padding: 0.75em 1em;
-  border-radius: var(--border-radius);
-  margin-bottom: 1rem; /* Space it out from the button */
-  text-align: center;
-  font-size: 0.95em;
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger);
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 1.5rem;
+  border-left: 3px solid var(--danger);
+  font-size: 0.95rem;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  color: var(--gray);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .workouts-page-container {
+    padding: 1rem;
+  }
+  
+  .workouts-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .workouts-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .set-item {
+    grid-template-columns: 1fr 1fr auto;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .set-item {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .set-item-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+  
+  .exercise-item {
+    padding: 1rem;
+  }
+  
+  .workout-form {
+    padding: 1rem;
+  }
 }

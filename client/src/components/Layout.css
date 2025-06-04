@@ -1,0 +1,119 @@
+/* Layout base styles */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Header styles */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--surface-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Main content area */
+.app-main {
+  flex: 1; /* Takes up all available space */
+  width: 100%;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .app-main {
+    padding: 1rem 1rem 2rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .app-header,
+  .footer {
+    display: none;
+  }
+  
+  .app-main {
+    padding: 0;
+  }
+}
+
+/* Animation for page transitions */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.app-main {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Ensure all focusable elements have a focus style */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 1em;
+  background-color: var(--primary-color);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.skip-to-content:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  outline: none;
+}
+
+/* Ensure proper spacing for fixed elements */
+body {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling for the entire app */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Print styles */
+@media print {
+  .app-main {
+    padding: 0;
+    margin: 0;
+  }
+  
+  @page {
+    margin: 1cm;
+  }
+}

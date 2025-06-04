@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../assets/FitFlow.png';
 
 const Navbar: React.FC = () => {
-  console.log('[Navbar] Component rendering/re-rendering.'); // Log 1
-  console.log('[Navbar] Initial localStorage token:', localStorage.getItem('token')); // Log 2
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!localStorage.getItem('token'));
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Get location object
+  const location = useLocation();
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     console.log('[Navbar] useEffect triggered. Pathname:', location.pathname); // Updated log
@@ -36,23 +36,122 @@ const Navbar: React.FC = () => {
   };
 
   console.log('[Navbar] Current isAuthenticated state:', isAuthenticated); // Log 6
+  // Toggle mobile menu
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
+  // Add or remove no-scroll class to body based on menu state
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, [isMenuOpen]);
+
   return (
-    <nav className="navbar">
-      <NavLink to="/" className="nav-logo">
-        <img src={logo} alt="FitFlow Logo" className="logo-image" />
-        <span className="logo-text">FitFlow</span>
-      </NavLink>
-      <ul className="nav-links">
-        <li><NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Home</NavLink></li>
-        <li><NavLink to="/workouts" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Workouts</NavLink></li>
-        <li><NavLink to="/nutrition" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Nutrition</NavLink></li>
-        <li><NavLink to="/weight" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Weight</NavLink></li>
-                {isAuthenticated ? (
-          <li><button onClick={handleLogout} className="nav-link auth-link logout-button">Logout</button></li>
-        ) : (
-          <li><NavLink to="/login" className={({ isActive }) => isActive ? 'nav-link auth-link' : 'nav-link auth-link'}>Login</NavLink></li>
-        )}
-      </ul>
+    <nav className={`navbar ${isMenuOpen ? 'menu-open' : ''}`} ref={navRef}>
+      <div className="nav-container">
+        <NavLink to="/" className="nav-logo" onClick={() => setIsMenuOpen(false)}>
+          <img src={logo} alt="FitFlow Logo" className="logo-image" />
+          <span className="logo-text">FitFlow</span>
+        </NavLink>
+
+        <button 
+          className="menu-button" 
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+        >
+          <span className="menu-icon"></span>
+        </button>
+
+        <ul className="nav-links">
+          <li>
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/workouts" 
+              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Workouts
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/nutrition" 
+              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Nutrition
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/weight" 
+              className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Weight
+            </NavLink>
+          </li>
+          {isAuthenticated ? (
+            <li>
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLogout();
+                  setIsMenuOpen(false);
+                }} 
+                className="nav-link auth-link logout-button"
+              >
+                Logout
+              </button>
+            </li>
+          ) : (
+            <li>
+              <NavLink 
+                to="/login" 
+                className={({ isActive }) => `nav-link auth-link ${isActive ? 'active' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Login
+              </NavLink>
+            </li>
+          )}
+        </ul>
+      </div>
     </nav>
   );
 };

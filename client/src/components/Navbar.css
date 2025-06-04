@@ -1,11 +1,78 @@
+/* Navbar base styles */
 .navbar {
   background-color: var(--surface-color);
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+/* Navbar container */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* Mobile menu button */
+.menu-button {
+  display: none; /* Hidden by default on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.menu-button:focus {
+  outline: 2px solid var(--primary-color);
+  border-radius: 4px;
+}
+
+.menu-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-color);
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon::before {
+  transform: translateY(-8px);
+}
+
+.menu-icon::after {
+  transform: translateY(8px);
+}
+
+/* When menu is open */
+.menu-open .menu-icon {
+  background-color: transparent;
+}
+
+.menu-open .menu-icon::before {
+  transform: rotate(45deg);
+}
+
+.menu-open .menu-icon::after {
+  transform: rotate(-45deg);
 }
 
 .nav-logo {
@@ -36,11 +103,94 @@
   opacity: 0.9;
 }
 
+/* Navigation links */
 .nav-links {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .menu-button {
+    display: block; /* Show menu button on mobile */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--surface-color);
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+  .menu-open .nav-links {
+    right: 0;
+  }
+
+  .nav-links li {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.75rem 0;
+    width: 100%;
+  }
+
+  .auth-link {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .logout-button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font: inherit;
+    padding: 0.75rem 0;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .navbar {
+    padding: 0.75rem 2rem;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-links li {
+    margin-left: 1.5rem;
+  }
+
+  .auth-link {
+    margin-left: 0.5rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 992px) {
+  .nav-links li {
+    margin-left: 2rem;
+  }
 }
 
 .nav-links li {
